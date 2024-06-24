@@ -1,0 +1,23 @@
+<div class="container mt-4">
+  <button class="btn btn-primary" (click)="createArticle()">Add article</button>
+  
+  <div class="mb-3 mt-4" *ngIf="articles.length > 0">    
+    <h4>Filtering articles</h4>
+    <input type="text" class="form-control" placeholder="Search articles by title" [(ngModel)]="searchTerm" (input)="onSearchTermChange()">
+  </div>
+
+  <ul class="list-group">
+    <li *ngFor="let article of filteredArticles" class="list-group-item d-flex justify-content-between align-items-center">
+      <span (click)="selectArticle(article)" class="article-title">{{ article.title }}</span>
+      <div class="btn-group">
+        <button class="btn btn-sm btn-success" (click)="editArticle(article)">Edit</button>
+        <button class="btn btn-sm btn-danger" (click)="confirmDelete(article)">Delete</button>
+      </div>
+    </li>
+  </ul>
+  
+  <app-confirm-dialog 
+    *ngIf="isConfirming" 
+    (confirmed)="deleteArticle($event)">
+  </app-confirm-dialog>
+</div>

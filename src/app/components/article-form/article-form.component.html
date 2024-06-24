@@ -1,0 +1,20 @@
+<div class="container mt-4">
+  <h2 class="text-uppercase">{{ article.id ? 'Edit article' : 'Add article' }}</h2>
+  <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">   
+    <div class="mb-3">
+      <label class="form-label" for="title">Title</label>
+      <input class="form-control" placeholder="Put an article title" type="text" id="title" [ngModel]="article.title" name="title" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="content">Content</label>
+      <textarea class="form-control" id="content" placeholder="Put an article content" [ngModel]="article.content" name="content" required></textarea>
+    </div>
+
+    <div class="col-2">
+      <div class="buttons">
+        <button type="submit" class="btn btn-primary mr-2">Save</button>
+        <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+      </div>
+    </div>
+  </form>
+</div>
